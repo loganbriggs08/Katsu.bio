@@ -6,15 +6,18 @@ import (
 	"log"
 	"net/http"
 
+	"katsu.bio/database"
 	"katsu.bio/structs"
 )
 
 func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		if r.Header.Get("blog-id") == "" {
-
+		if r.Header.Get("blog-query") == "" {
+			getBlogsresult := database.GetBlogs(r.Header.Get(""))
+			fmt.Println(getBlogsresult)
 		} else {
-			fmt.Fprintf(w, "blog-id header was passed.")
+			getBlogsresult := database.GetBlogs(r.Header.Get("blog-query"))
+			fmt.Println(getBlogsresult)
 		}
 
 	} else {
