@@ -38,26 +38,51 @@ func CreateTables() bool {
 func GetBlogs(query string) []structs.Blog {
 	var ReturnBlogs []structs.Blog
 
-	rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs WHERE blog_id = ? OR blog_title LIKE ?", query, query)
+	if query == "" {
+		rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs")
 
-	if databaseQueryError != nil {
-		log.Fatal(databaseQueryError)
-
-		return ReturnBlogs
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		var currentBlog structs.Blog
-
-		rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
-
-		if err != nil {
-			log.Fatal(rowScanError)
+		if databaseQueryError != nil {
+			log.Fatal(databaseQueryError)
 
 			return ReturnBlogs
 		}
-	}
+		defer rows.Close()
 
-	return ReturnBlogs
+		for rows.Next() {
+			var currentBlog structs.Blog
+
+			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
+
+			if rowScanError != nil {
+				log.Fatal(rowScanError)
+
+				return ReturnBlogs
+			}
+		}
+
+		return ReturnBlogs
+	} else {
+		rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs WHERE blog_id = ? OR blog_title LIKE ?", query, query)
+
+		if databaseQueryError != nil {
+			log.Fatal(databaseQueryError)
+
+			return ReturnBlogs
+		}
+		defer rows.Close()
+
+		for rows.Next() {
+			var currentBlog structs.Blog
+
+			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
+
+			if rowScanError != nil {
+				log.Fatal(rowScanError)
+
+				return ReturnBlogs
+			}
+		}
+
+		return ReturnBlogs
+	}
 }
