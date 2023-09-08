@@ -21,7 +21,7 @@ func Initialize() bool {
 func CreateTables() bool {
 	var tableCreationError error
 
-	_, tableCreationError = database_connection.Exec("CREATE TABLE IF NOT EXISTS blogs(blog_id SMALLINT, blog_title VARCHAR(255), blog_description VARCHAR(255), blog_tags TEXT[]);")
+	_, tableCreationError = database_connection.Exec("CREATE TABLE IF NOT EXISTS blogs(blog_id SMALLINT, blog_title VARCHAR(150), blog_description VARCHAR(200), blog_tag VARCHAR(50));")
 
 	if tableCreationError != nil {
 		return false
