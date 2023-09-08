@@ -6,7 +6,7 @@ type Error struct {
 }
 
 type Blog struct {
-	BlogID          int64  `json:"blog_id"`
+	BlogID          string `json:"blog_id"`
 	BlogTitle       string `json:"blog_title"`
 	BlogDescription string `json:"blog_description"`
 	BlogTag         string `json:"blog_tag"`
