@@ -2,7 +2,6 @@ package endpoints
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -12,12 +11,47 @@ import (
 
 func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		if r.Header.Get("blog-query") == "" {
-			getBlogsresult := database.GetBlogs(r.Header.Get(""))
-			fmt.Println(getBlogsresult)
+		if r.Header.Get("query") == "" {
+			blogResults := database.GetBlogs(r.Header.Get(""))
+
+			BlogList := structs.Blogs{
+				BlogResults: blogResults,
+			}
+
+			blogResultsMarshal, MarshalError := json.Marshal(BlogList)
+
+			if MarshalError != nil {
+				log.Fatal(MarshalError)
+			} else {
+				w.WriteHeader(http.StatusOK)
+
+				_, WriteError := w.Write(blogResultsMarshal)
+
+				if WriteError != nil {
+					log.Fatal(MarshalError)
+				}
+			}
+
 		} else {
-			getBlogsresult := database.GetBlogs(r.Header.Get("blog-query"))
-			fmt.Println(getBlogsresult)
+			blogResults := database.GetBlogs(r.Header.Get("query"))
+
+			BlogList := structs.Blogs{
+				BlogResults: blogResults,
+			}
+
+			blogResultsMarshal, MarshalError := json.Marshal(BlogList)
+
+			if MarshalError != nil {
+				log.Fatal(MarshalError)
+			} else {
+				w.WriteHeader(http.StatusOK)
+
+				_, WriteError := w.Write(blogResultsMarshal)
+
+				if WriteError != nil {
+					log.Fatal(MarshalError)
+				}
+			}
 		}
 
 	} else {
