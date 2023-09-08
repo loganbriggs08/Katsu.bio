@@ -58,6 +58,7 @@ func GetBlogs(query string) []structs.Blog {
 
 				return ReturnBlogs
 			}
+			ReturnBlogs = append(ReturnBlogs, currentBlog)
 		}
 
 		return ReturnBlogs
@@ -81,6 +82,7 @@ func GetBlogs(query string) []structs.Blog {
 
 				return ReturnBlogs
 			}
+			ReturnBlogs = append(ReturnBlogs, currentBlog)
 		}
 
 		return ReturnBlogs
