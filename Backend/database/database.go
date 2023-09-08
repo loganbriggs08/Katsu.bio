@@ -2,6 +2,10 @@ package database
 
 import (
 	"database/sql"
+	"log"
+
+	"katsu.bio/structs"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -12,7 +16,8 @@ func Initialize() bool {
 
 	if databaseConnectionError != nil {
 		return false
-	} else {		database_connection = connection
+	} else {
+		database_connection = connection
 		return true
 
 	}
@@ -28,4 +33,31 @@ func CreateTables() bool {
 	} else {
 		return true
 	}
+}
+
+func GetBlogs(query string) []structs.Blog {
+	var ReturnBlogs []structs.Blog
+
+	rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs WHERE blog_id = ? OR blog_title LIKE ?", query, query)
+
+	if databaseQueryError != nil {
+		log.Fatal(databaseQueryError)
+
+		return ReturnBlogs
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var currentBlog structs.Blog
+
+		rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
+
+		if err != nil {
+			log.Fatal(rowScanError)
+
+			return ReturnBlogs
+		}
+	}
+
+	return ReturnBlogs
 }
