@@ -1,5 +1,5 @@
-import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
 import {Divider} from '@nextui-org/divider'
+import {Card, CardBody, CardFooter} from "@nextui-org/card";
 
 export const Banner = () => {
 	return (
