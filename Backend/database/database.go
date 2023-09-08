@@ -63,7 +63,7 @@ func GetBlogs(query string) []structs.Blog {
 
 		return ReturnBlogs
 	} else {
-		rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs WHERE blog_id = ? OR blog_title LIKE ?", query, query)
+		rows, databaseQueryError := database_connection.Query("SELECT * FROM blogs WHERE blog_id = ? OR blog_title LIKE ?", query, "%"+query+"%")
 
 		if databaseQueryError != nil {
 			log.Fatal(databaseQueryError)
