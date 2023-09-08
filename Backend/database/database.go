@@ -12,9 +12,9 @@ func Initialize() bool {
 
 	if databaseConnectionError != nil {
 		return false
-	} else {
-		database_connection = connection
+	} else {		database_connection = connection
 		return true
+
 	}
 }
 
