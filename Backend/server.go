@@ -7,12 +7,28 @@ import (
 	"net/http"
 )
 
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	if database.Initialize() == true {
 		if database.CreateTables() == true {
 			http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
+			corsHandler := corsMiddleware(http.DefaultServeMux)
 
-			log.Fatal(http.ListenAndServe(":6969", nil))
+			log.Fatal(http.ListenAndServe(":6969", corsHandler))
 		} else {
 			log.Fatal("Failed to create tables within the database.")
 		}
