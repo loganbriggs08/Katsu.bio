@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	if database.Initalise() == true {
+	if database.Initialize() == true {
 		http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
 
 		log.Fatal(http.ListenAndServe(":6969", nil))

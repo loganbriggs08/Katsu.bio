@@ -7,7 +7,7 @@ import (
 
 var database_connection *sql.DB
 
-func Initalise() bool {
+func Initialize() bool {
 	connection, databaseConnectionError := sql.Open("sqlite3", "database.db")
 
 	if databaseConnectionError != nil {
