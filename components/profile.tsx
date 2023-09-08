@@ -9,7 +9,7 @@ export const Profile = () => {
 				
 				<div style={{ display: "flex", alignItems: "center", marginTop: "0.5rem" }}>
 					<h1 style={{ fontSize: "40px", fontWeight: "500", marginRight: "1rem" }}>Katsu</h1>
-					<h1 style={{ fontSize: "25px", fontWeight: "500" }}>[he/him]</h1>
+					<h1 style={{ fontSize: "22px", fontWeight: "500" }}>[he/him]</h1>
 					
 					<a href="https://discord.com/channels/@me/1052982721598738522/" target="_blank" style={{ color: "#fff", marginLeft: "1rem", fontSize: "25px" }}>
 						<BsDiscord/>
