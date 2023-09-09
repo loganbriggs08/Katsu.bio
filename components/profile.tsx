@@ -7,7 +7,7 @@ export const Profile = () => {
 			<div style={{ width: "35%" }}>
 				<img src="https://cdn.discordapp.com/avatars/1052982721598738522/7e71686c3ef7a0614699aa704e98bd3d.png" style={{ borderRadius: "1.5rem", padding: "none" }}/>
 				
-				<div style={{ display: "flex", alignItems: "center", marginTop: "0.5rem" }}>
+				<div style={{ display: "flex", alignItems: "center" }}>
 					<h1 style={{ fontSize: "40px", fontWeight: "500", marginRight: "1rem" }}>Katsu</h1>
 					<h1 style={{ fontSize: "22px", fontWeight: "500" }}>[he/him]</h1>
 					
