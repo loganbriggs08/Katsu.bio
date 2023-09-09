@@ -1,5 +1,6 @@
 'use client' 
 
+import {Chip} from "@nextui-org/chip";
 import { useEffect, useState } from "react";
 import { Profile } from "@/components/profile";
 import {Card, CardBody} from "@nextui-org/card";
@@ -34,10 +35,14 @@ export default function Home() {
 					
 					{blogData.map((blog) => (
 						<div key={blog.blog_id} style={{ marginBottom: "1rem" }}>
-							<Card style={{ backgroundColor: "#212121", borderRadius: "6px", width: "100%", marginTop: "1rem" }} shadow="none">
-								<CardBody style={{ padding: "0.1rem", marginLeft: "1.5rem", marginRight: "1.5rem", paddingTop: "1rem", paddingBottom: "1rem" }}>
-									<h1 style={{ fontSize: "1.2rem", fontWeight: "700", color: "#FFFFFF" }}>{blog.blog_title} #{blog.blog_tag.toUpperCase()}</h1>
-									<p style={{ fontSize: "0.9rem", color: "rgba(255, 255, 255, 0.6)" }}>{blog.blog_description} </p>
+							<Card style={{ backgroundColor: "#212121", borderRadius: "6px", width: "100%", marginTop: "1.2rem" }} shadow="none">
+								<CardBody style={{ padding: "0.1rem", marginLeft: "1.5rem", marginRight: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+									<div style={{ display: "flex", alignItems: "center" }}>
+										<h1 style={{ fontSize: "20px", fontWeight: "500", marginRight: "1rem" }}>{blog.blog_title}</h1>
+										<Chip style={{ backgroundColor: "#ED4245", padding: "0.2rem", borderRadius: "0.2rem" }}>{blog.blog_tag.toUpperCase()}</Chip>
+									</div>
+
+									<p style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.6)", marginTop: "0px" }}>{blog.blog_description} </p>
 								</CardBody>
 							</Card>
 						</div>
