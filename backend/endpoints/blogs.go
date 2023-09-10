@@ -55,19 +55,19 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 		}
 
 	} else {
-		VideoCallbackError := structs.Error{
+		HandleBlogsCallbackError := structs.Error{
 			ErrorCode:    http.StatusMethodNotAllowed,
 			ErrorMessage: "Method used is not accepted at this Endpoint.",
 		}
 
-		VideoCallBackErrorMarshal, MarshalError := json.Marshal(VideoCallbackError)
+		HandleBlogsCallBackErrorMarshal, MarshalError := json.Marshal(HandleBlogsCallbackError)
 
 		if MarshalError != nil {
 			log.Fatal(MarshalError)
 		} else {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
-			_, WriteError := w.Write(VideoCallBackErrorMarshal)
+			_, WriteError := w.Write(HandleBlogsCallBackErrorMarshal)
 
 			if WriteError != nil {
 				log.Fatal(MarshalError)
@@ -77,5 +77,40 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleBlogsHTML(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		blogHTMLStruct := structs.ReturnHTML{
+			BlogHTML: database.GetHTML(r.Header.Get("blog_id")),
+		}
 
+		BlogHtmlMarshal, BlogHTMLMarshalError := json.Marshal(blogHTMLStruct)
+
+		if BlogHTMLMarshalError != nil {
+			log.Fatal(BlogHTMLMarshalError)
+		}
+		w.WriteHeader(http.StatusOK)
+		_, ReturnWriteError := w.Write(BlogHtmlMarshal)
+
+		if ReturnWriteError != nil {
+			log.Fatal(ReturnWriteError)
+		}
+	} else {
+		HandleBlogsHTMLCallbackError := structs.Error{
+			ErrorCode:    http.StatusMethodNotAllowed,
+			ErrorMessage: "Method used is not accepted at this Endpoint.",
+		}
+
+		HandleBlogsHTMLCallbackErrorMarshal, MarshalError := json.Marshal(HandleBlogsHTMLCallbackError)
+
+		if MarshalError != nil {
+			log.Fatal(MarshalError)
+		} else {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+
+			_, WriteError := w.Write(HandleBlogsHTMLCallbackErrorMarshal)
+
+			if WriteError != nil {
+				log.Fatal(MarshalError)
+			}
+		}
+	}
 }

@@ -123,3 +123,26 @@ func GetAllTags() []string {
 
 	return ReturnTags
 }
+
+func GetHTML(blogID string) string {
+	var returnString string
+	rows, databaseErrorQuery := database_connection.Query("SELECT blog_html FROM blogs WHERE blog_id = ?", blogID)
+
+	if databaseErrorQuery == sql.ErrNoRows {
+		return ""
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var currentReturnString string
+
+		rowScanError := rows.Scan(&currentReturnString)
+
+		if rowScanError != nil {
+			log.Fatal(rowScanError)
+		} else {
+			returnString = currentReturnString
+		}
+	}
+	return returnString
+}
