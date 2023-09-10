@@ -88,3 +88,37 @@ func GetBlogs(query string) []structs.Blog {
 		return ReturnBlogs
 	}
 }
+
+func GetAllTags() []string {
+	var ReturnTags []string
+
+	rows, databaseErrorQuery := database_connection.Query("SELECT blog_tag FROM blogs")
+
+	if databaseErrorQuery != nil {
+		log.Fatal(databaseErrorQuery)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var currentTag string
+		var foundTag bool
+
+		rowScanError := rows.Scan(&currentTag)
+
+		if rowScanError != nil {
+			log.Fatal(rowScanError)
+		}
+
+		for _, str := range ReturnTags.Tags {
+			if str == currentTag {
+				foundTag = true
+			}
+		}
+
+		if foundTag != true {
+			ReturnTags = append(ReturnTags, currentTag)
+		}
+	}
+
+	return ReturnTags
+}
