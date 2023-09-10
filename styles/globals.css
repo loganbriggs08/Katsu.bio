@@ -16,3 +16,7 @@ body {
 .SearchPosts::placeholder {
     font-size: large;
 }
+
+.TagButton:hover {
+    cursor: pointer;
+}
