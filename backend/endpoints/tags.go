@@ -2,7 +2,7 @@ package endpoints
 
 import (
 	"encoding/json"
-	"fmt"
+	"katsu.bio/database"
 	"log"
 	"net/http"
 
@@ -11,7 +11,22 @@ import (
 
 func HandleTags(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		fmt.Println("Correct method")
+		ReturnTags := structs.Tags{
+			Tags: database.GetAllTags(),
+		}
+
+		ReturnTagsMarshal, ReturnTagsMarshalError := json.Marshal(ReturnTags)
+
+		if ReturnTagsMarshalError != nil {
+			log.Fatal(ReturnTagsMarshalError)
+		} else {
+			w.WriteHeader(http.StatusOK)
+			_, ResponseWriteError := w.Write(ReturnTagsMarshal)
+
+			if ResponseWriteError != nil {
+				log.Fatal(ResponseWriteError)
+			}
+		}
 	} else {
 		MethodError := structs.Error{
 			ErrorCode:    http.StatusMethodNotAllowed,
