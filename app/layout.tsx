@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { fontSans } from "@/config/fonts";
 import { Banner } from "@/components/banner";
+import { Footer } from "@/components/footer";
 import clsx from "clsx";
 
 export default function RootLayout({
@@ -17,6 +18,8 @@ export default function RootLayout({
 				<main>
 					{children}
 				</main>
+
+				<Footer />
 			</body>
 		</html>
 	);
