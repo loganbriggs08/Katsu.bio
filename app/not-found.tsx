@@ -3,29 +3,56 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function NotFound() {
+export default function BlogPage() {
   const router = useRouter();
   const currentUrl = window.location.href;
-  const isPostsPage = currentUrl.includes("/posts/");
+  
+  // Use regex to get the part of the URL after the last /
+  const blog_id = currentUrl.match(/\/([^/]+)\/?$/)?.[1];
 
-  const [userHtmlContent, setUserHtmlContent] = useState<string | null>(null);
+  const [blogHtmlContent, setBlogHtmlContent] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isPostsPage) {
-      const userInput = "<h1>Hello dsd</h1>";
+    const fetchBlogHtml = async () => {
+      try {
+        if (blog_id) {
+          // Make a request to the API with the blog_id as a header
+          const response = await fetch("http://localhost:6969/api/blogs/html", {
+            method: "GET",
+            headers: {
+              blog_id: blog_id,
+            },
+          });
 
-      setUserHtmlContent(userInput);
-    } else {
-      router.replace("/");
-    }
-  }, [isPostsPage, router]);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+
+          const data = await response.json();
+
+          // Check if blog_html is not empty
+          if (data.blog_html !== "") {
+            setBlogHtmlContent(data.blog_html);
+          } else {
+            router.replace("/");
+          }
+        } else {
+          router.replace("/");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        router.replace("/");
+      }
+    };
+
+    fetchBlogHtml();
+  }, [blog_id, router]);
 
   return (
     <div>
-      {userHtmlContent && (
-        <div dangerouslySetInnerHTML={{ __html: userHtmlContent }} />
+      {blogHtmlContent && (
+        <div dangerouslySetInnerHTML={{ __html: blogHtmlContent }} />
       )}
     </div>
   );
 }
-
