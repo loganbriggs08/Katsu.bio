@@ -26,6 +26,8 @@ func main() {
 	if database.Initialize() == true {
 		if database.CreateTables() == true {
 			http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
+			http.HandleFunc("/api/tags", endpoints.HandleTags)
+
 			corsHandler := corsMiddleware(http.DefaultServeMux)
 
 			log.Fatal(http.ListenAndServe(":6969", corsHandler))
