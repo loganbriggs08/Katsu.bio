@@ -10,5 +10,9 @@ body {
 }
 
 .PostCard:hover {
-    transform: scale(1.050);
+    transform: scale(1.05);
+}
+
+.SearchPosts::placeholder {
+    font-size: large;
 }
