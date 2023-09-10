@@ -24,7 +24,7 @@ export const Posts = () => {
 	}, []);
 
 	return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "1.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "0.5rem" }}>
         	<div style={{ width: "35%" }}>
 				<h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginRight: "1rem" }}>Recent Posts</h1>
 				
