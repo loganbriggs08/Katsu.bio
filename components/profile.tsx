@@ -8,8 +8,8 @@ export const Profile = () => {
 				<img src="https://cdn.discordapp.com/avatars/1052982721598738522/7e71686c3ef7a0614699aa704e98bd3d.png" style={{ borderRadius: "1.5rem", padding: "none" }}/>
 				
 				<div style={{ display: "flex", alignItems: "center" }}>
-					<h1 style={{ fontSize: "40px", fontWeight: "500", marginRight: "1rem" }}>Katsu</h1>
-					<h1 style={{ fontSize: "22px", fontWeight: "500" }}>[he/him]</h1>
+					<h1 style={{ fontSize: "40px", fontWeight: "500", marginRight: "0.8rem" }}>Katsu</h1>
+					<h1 style={{ fontSize: "22px", fontWeight: "500", marginTop: "auto", marginBottom: "auto" }}>[he/him]</h1>
 					
 					<a href="https://discord.com/channels/@me/1052982721598738522/" target="_blank" style={{ color: "#fff", marginLeft: "1rem", fontSize: "25px" }}>
 						<BsDiscord/>
@@ -20,7 +20,7 @@ export const Profile = () => {
 					</a>
 				</div>
 				
-				<img src="https://skillicons.dev/icons?i=python,go,typescript,react,mongodb,postgres,github,docker,vim" style={{ marginBottom: "1rem" }}/>
+				<img src="https://skillicons.dev/icons?i=python,go,typescript,html,css,tailwind,react,mongodb,postgres,github,docker,vim" style={{ marginBottom: "1rem" }}/>
 				<Divider/>
 			</div>
 		</div>
