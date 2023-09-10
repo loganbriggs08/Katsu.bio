@@ -20,3 +20,7 @@ type Blogs struct {
 type Tags struct {
 	Tags []string `json:"tags"`
 }
+
+type ReturnHTML struct {
+	BlogHTML string `json:"blog_html"`
+}
