@@ -12,7 +12,7 @@ interface Blog {
   blog_tag: string;
 }
 
-const AboutPage: React.FC = () => {
+const PostsPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [blogResults, setBlogResults] = useState<Blog[]>([]);
   const [blogTagsData, setBlogTagsData] = useState<string[]>([]);
@@ -125,4 +125,4 @@ const AboutPage: React.FC = () => {
   );
 }
 
-export default AboutPage;
+export default PostsPage;
