@@ -109,7 +109,7 @@ func GetAllTags() []string {
 			log.Fatal(rowScanError)
 		}
 
-		for _, str := range ReturnTags.Tags {
+		for _, str := range ReturnTags {
 			if str == currentTag {
 				foundTag = true
 			}
