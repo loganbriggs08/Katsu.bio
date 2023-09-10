@@ -29,7 +29,7 @@ const AboutPage: React.FC = () => {
         });
 
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('There was a problem with the Network response.');
         }
 
         const data = await response.json();
@@ -82,9 +82,9 @@ const AboutPage: React.FC = () => {
 
           <div>
             {blogResults === null ? (
-				<h1>No Results 1</h1>
+				<p style={{ fontSize: "1.3rem" }}>No Results 😔</p>
 			) : blogResults.length === 0 ? (
-				<h1>No results</h1>
+				<p style={{ fontSize: "1.3rem" }}>Loading your results.. 😊</p>
 			) : (
 				blogResults.map((blog) => (
 					<CustomCard key={blog.blog_id} blog={blog} />
