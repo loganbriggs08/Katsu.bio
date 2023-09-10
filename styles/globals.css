@@ -4,3 +4,11 @@ body {
     color: #FFF;
     background-color: #191919;
 }
+
+.PostCard {
+    transition: transform 0.3s ease;
+}
+
+.PostCard:hover {
+    transform: scale(1.050);
+}
