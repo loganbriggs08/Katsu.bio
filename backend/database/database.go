@@ -27,7 +27,7 @@ func Initialize() bool {
 func CreateTables() bool {
 	var tableCreationError error
 
-	_, tableCreationError = database_connection.Exec("CREATE TABLE IF NOT EXISTS blogs(blog_id SMALLINT, blog_title VARCHAR(150), blog_description VARCHAR(200), blog_tag VARCHAR(50));")
+	_, tableCreationError = database_connection.Exec("CREATE TABLE IF NOT EXISTS blogs(blog_id SMALLINT, blog_title VARCHAR(150), blog_description VARCHAR(200), blog_tag VARCHAR(50), blog_html VARCHAR(100000));")
 
 	if tableCreationError != nil {
 		return false
@@ -52,7 +52,7 @@ func GetBlogs(query string) []structs.Blog {
 		for rows.Next() {
 			var currentBlog structs.Blog
 
-			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
+			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag, &currentBlog.BlogHTML)
 
 			if rowScanError != nil {
 				log.Fatal(rowScanError)
@@ -76,7 +76,7 @@ func GetBlogs(query string) []structs.Blog {
 		for rows.Next() {
 			var currentBlog structs.Blog
 
-			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag)
+			rowScanError := rows.Scan(&currentBlog.BlogID, &currentBlog.BlogTitle, &currentBlog.BlogDescription, &currentBlog.BlogTag, &currentBlog.BlogHTML)
 
 			if rowScanError != nil {
 				log.Fatal(rowScanError)

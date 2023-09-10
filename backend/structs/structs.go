@@ -10,6 +10,7 @@ type Blog struct {
 	BlogTitle       string `json:"blog_title"`
 	BlogDescription string `json:"blog_description"`
 	BlogTag         string `json:"blog_tag"`
+	BlogHTML        string `json:"blog_html"`
 }
 
 type Blogs struct {

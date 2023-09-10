@@ -75,3 +75,7 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+func HandleBlogsHTML(w http.ResponseWriter, r *http.Request) {
+
+}
