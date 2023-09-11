@@ -11,7 +11,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, query, blog_id")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, query, blog_id, dashboard_username, dashboard_password")
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
@@ -27,7 +27,11 @@ func main() {
 		if database.CreateTables() == true {
 			http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
 			http.HandleFunc("/api/blogs/html", endpoints.HandleBlogsHTML)
+			http.HandleFunc("/api/blogs/update", endpoints.UpdateBlogs)
+
 			http.HandleFunc("/api/tags", endpoints.HandleTags)
+
+			http.HandleFunc("/api/login", endpoints.HandleLogin)
 
 			corsHandler := corsMiddleware(http.DefaultServeMux)
 
