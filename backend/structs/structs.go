@@ -18,7 +18,7 @@ type Blogs struct {
 }
 
 type BlogUpdate struct {
-	Updated string `json:"updated"`
+	Updated bool `json:"updated"`
 }
 
 type Tags struct {
