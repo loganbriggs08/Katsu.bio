@@ -78,6 +78,7 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 
 func UpdateBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
+		databaseUpdateBlogResult := database.UpdateBlog(r.Header.Get("blog_id"), r.Header.Get("blog_title"), r.Header.Get("blog_description"), r.Header.Get("blog_tag"), r.Header.Get("blog_html"))
 
 	} else {
 		HandleBlogsUpdateCallbackError := structs.Error{
