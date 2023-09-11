@@ -19,7 +19,7 @@ const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
     <a href={blogLink} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className='PostCard'
         style={{
-          backgroundColor: "#4251f5",
+          backgroundColor: "#202020",
           borderRadius: "6px",
           width: "100%",
           marginTop: "1.2rem",
@@ -40,7 +40,7 @@ const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
             </h1>
             <div
               style={{
-                backgroundColor: "#5865F2",
+                backgroundColor: "#292932",
                 padding: "0.3rem",
                 borderRadius: "0.2rem",
               }}
