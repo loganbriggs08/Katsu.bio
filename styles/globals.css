@@ -20,3 +20,11 @@ body {
 .TagButton:hover {
     cursor: pointer;
 }
+
+.LoginButton:hover {
+    cursor: pointer;
+}
+
+.PostsEditButton:hover {
+    cursor: pointer;
+}
