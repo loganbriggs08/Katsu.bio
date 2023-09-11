@@ -24,3 +24,7 @@ type Tags struct {
 type ReturnHTML struct {
 	BlogHTML string `json:"blog_html"`
 }
+
+type LoginResult struct {
+	LoginSuccess bool `json:"login_success"`
+}
