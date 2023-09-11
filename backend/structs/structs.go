@@ -17,6 +17,10 @@ type Blogs struct {
 	BlogResults []Blog `json:"blog_results"`
 }
 
+type BlogUpdate struct {
+	Updated string `json:"updated"`
+}
+
 type Tags struct {
 	Tags []string `json:"tags"`
 }
