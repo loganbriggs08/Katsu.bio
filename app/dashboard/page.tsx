@@ -1,42 +1,56 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { Dashboard } from '../../components/dashboard'
 
 const DashboardPage: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const cookies = document.cookie.split(';');
-    const loggedInCookie = cookies.find(cookie => cookie.trim().startsWith('loggedIn='));
+    const cookies = document.cookie.split(";");
+    const usernameCookie = cookies.find((cookie) =>
+      cookie.trim().startsWith("username=")
+    );
+    const passwordCookie = cookies.find((cookie) =>
+      cookie.trim().startsWith("password=")
+    );
 
-    if (loggedInCookie) {
-      setIsLoggedIn(true);
+    if (usernameCookie && passwordCookie) {
+      fetch("http://localhost:6969/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "dashboard_username": usernameCookie.split("=")[1],
+          "dashboard_password": passwordCookie.split("=")[1],
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.login_success) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+            router.replace("/dashboard/login");
+          }
+        })
+        .catch((error) => {
+          console.error("Login error:", error);
+          setIsLoggedIn(false);
+          router.replace("/dashboard/login");
+        });
     } else {
       setIsLoggedIn(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
       router.replace("/dashboard/login");
     }
-  }, [isLoggedIn, router]);
+  }, [router]);
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "8%" }}>
-        <div style={{ width: "35%" }}>
-          {isLoggedIn ? (
-            <h1>Dashboard</h1>
-          ) : null}
-        </div>
-      </div>
+      {isLoggedIn === true ? <Dashboard/> : null}
     </div>
   );
-}
+};
 
 export default DashboardPage;
-
-
