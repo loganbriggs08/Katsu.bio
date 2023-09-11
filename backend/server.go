@@ -11,7 +11,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, query, blog_id, dashboard_username, dashboard_password")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, query, blog_id, blog_title, blog_description, blog_tag, blog_html, dashboard_username, dashboard_password")
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
