@@ -77,7 +77,7 @@ const PostsPage: React.FC = () => {
             className="SearchPosts"
             placeholder="Search Posts"
             style={{
-              backgroundColor: "#292932",
+              backgroundColor: "#202020",
               paddingLeft: "0.8rem",
               marginBottom: "1rem",
               border: "none",
@@ -95,7 +95,7 @@ const PostsPage: React.FC = () => {
 		<div>
 			{blogTagsData && blogTagsData.length > 0 ? (
 				blogTagsData.map((tag, index) => (
-				<button className='TagButton' onClick={() => setSearchValue(tag)} style={{ marginTop: "0.5rem", marginRight: "0.5rem", padding: "0.5rem", borderRadius: "0.2rem", backgroundColor: "#5865F2", border: "none", color: "#fff" }} key={index}>{tag.toUpperCase()}</button>
+				<button className='TagButton' onClick={() => setSearchValue(tag)} style={{ marginTop: "0.5rem", marginRight: "0.5rem", padding: "0.5rem", borderRadius: "0.2rem", backgroundColor: "#292932", border: "none", color: "#fff" }} key={index}>{tag.toUpperCase()}</button>
 				))
 			) : (
 				<p>No tags available</p>
