@@ -18,7 +18,7 @@ export const Announcement = () => {
     );
 
 	useEffect(() => {
-		fetch("http://localhost:6969/api/announcement")
+		fetch("https://katsu.bio/api/announcement")
 			.then((response) => response.json())
 			.then((data) => {
                 setAnnouncementData(data);
@@ -56,7 +56,7 @@ export const Announcement = () => {
 
     const handleUpdateClick = async () => {
         try {
-        const response = await fetch('http://localhost:6969/api/announcement', {
+        const response = await fetch('https://katsu.bio/api/announcement', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

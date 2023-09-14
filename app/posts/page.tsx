@@ -18,7 +18,7 @@ const PostsPage: React.FC = () => {
   const [blogTagsData, setBlogTagsData] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:6969/api/tags")
+    fetch("https://katsu.bio/api/tags")
       .then((response) => response.json())
       .then((data) => {
         setBlogTagsData(data.tags);
@@ -36,7 +36,7 @@ const PostsPage: React.FC = () => {
         const headers = new Headers();
         headers.append('query', searchValue);
 
-        const response = await fetch('http://localhost:6969/api/blogs', {
+        const response = await fetch('https://katsu.bio/api/blogs', {
           method: 'GET',
           headers: headers,
         });

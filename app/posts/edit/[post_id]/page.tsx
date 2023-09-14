@@ -20,7 +20,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
     const headers = new Headers();
     headers.append('query', params.post_id);
   
-    fetch('http://localhost:6969/api/blogs', {
+    fetch('https://katsu.bio/api/blogs', {
       method: 'GET',
       headers: headers,
     })
@@ -43,7 +43,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
     );
 
     if (usernameCookie && passwordCookie) {
-      fetch("http://localhost:6969/api/login", {
+      fetch("https://katsu.bio/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

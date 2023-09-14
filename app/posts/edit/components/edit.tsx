@@ -39,7 +39,7 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
   useEffect(() => {
     const fetchBlogHtml = async () => {
       try {
-        const response = await fetch("http://localhost:6969/api/blogs/html", {
+        const response = await fetch("https://katsu.bio/api/blogs/html", {
           method: "GET",
           headers: {
             blog_id: blog.blog_id,
@@ -64,7 +64,7 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
 
   const updateHTML = async (htmlCode: any) => {
     try {
-      const response = await fetch('http://localhost:6969/api/blogs/update', {
+      const response = await fetch('https://katsu.bio/api/blogs/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
       ErrorToast("Please update values before pressing update.")
     } else {
       try {
-        const response = await fetch('http://localhost:6969/api/blogs/update', {
+        const response = await fetch('https://katsu.bio/api/blogs/update', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

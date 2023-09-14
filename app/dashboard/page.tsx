@@ -18,7 +18,7 @@ const DashboardPage: React.FC = () => {
     );
 
     if (usernameCookie && passwordCookie) {
-      fetch("http://localhost:6969/api/login", {
+      fetch("https://katsu.bio/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

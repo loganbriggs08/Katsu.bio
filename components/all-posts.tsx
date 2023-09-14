@@ -12,7 +12,7 @@ export const AllPosts = () => {
     const [blogData, setBlogData] = useState<Blog[]>([]);
 
 	useEffect(() => {
-		fetch("http://localhost:6969/api/blogs")
+		fetch("https://katsu.bio/api/blogs")
 			.then((response) => response.json())
 			.then((data) => {
 			setBlogData(data.blog_results);

@@ -21,7 +21,7 @@ export default function BlogPage() {
     const fetchBlogHtml = async () => {
       try {
         if (blog_id) {
-          const response = await fetch("http://localhost:6969/api/blogs/html", {
+          const response = await fetch("https://katsu.bio/api/blogs/html", {
             method: "GET",
             headers: {
               blog_id: blog_id,
