@@ -69,29 +69,18 @@ const PostsPage: React.FC = () => {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "8%" }}>
-        <div style={{ width: "35%" }}>
+      <div className='PostsWrapperSearchDiv'>
+        <div className='PostsWrapperSearch2Div'>
           <h1 style={{ fontSize: "40px", fontWeight: "500", marginBottom: "1rem" }}>All Posts</h1>
 
           <input
             className="SearchPosts"
             placeholder="Search Posts"
-            style={{
-              backgroundColor: "#202020",
-              paddingLeft: "0.8rem",
-              marginBottom: "1rem",
-              border: "none",
-              color: "#fff",
-              width: "60%",
-              height: "3rem",
-              borderRadius: "0.2rem",
-              fontSize: "large"
-            }}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
 
-        <Divider />
+      <Divider style={{ opacity: "80%" }}/>
 		<div>
 			{blogTagsData && blogTagsData.length > 0 ? (
 				blogTagsData.map((tag, index) => (

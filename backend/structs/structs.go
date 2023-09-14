@@ -32,3 +32,8 @@ type ReturnHTML struct {
 type LoginResult struct {
 	LoginSuccess bool `json:"login_success"`
 }
+
+type AnnouncementResult struct {
+	AnnouncementMessage string `json:"announcement_message"`
+	Updated             bool   `json:"updated"`
+}

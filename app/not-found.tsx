@@ -5,9 +5,14 @@ import { useRouter } from "next/navigation";
 
 export default function BlogPage() {
   const router = useRouter();
-  const currentUrl = window.location.href;
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
   
-  // Use regex to get the part of the URL after the last /
   const blog_id = currentUrl.match(/\/([^/]+)\/?$/)?.[1];
 
   const [blogHtmlContent, setBlogHtmlContent] = useState<string | null>(null);
@@ -16,7 +21,6 @@ export default function BlogPage() {
     const fetchBlogHtml = async () => {
       try {
         if (blog_id) {
-          // Make a request to the API with the blog_id as a header
           const response = await fetch("http://localhost:6969/api/blogs/html", {
             method: "GET",
             headers: {
@@ -30,7 +34,6 @@ export default function BlogPage() {
 
           const data = await response.json();
 
-          // Check if blog_html is not empty
           if (data.blog_html !== "") {
             setBlogHtmlContent(data.blog_html);
           } else {

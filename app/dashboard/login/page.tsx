@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import { Divider } from '@nextui-org/divider'
 
 const LoginPage: React.FC = () => {
     const router = useRouter();
@@ -46,9 +47,12 @@ const LoginPage: React.FC = () => {
 
     return (
         <div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "90vh" }}>
-                <div style={{ width: "35%" }}>
-                    <div style={{ backgroundColor: "rgb(32, 32, 32)", width: "70%", margin: "auto", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <div className='LoginPageWrapperDiv'>
+                <div className='LoginPageWrapper2Div'>
+                    <div className='LoginBackgroundWrapperDiv'>
+                        <h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginBottom: "0px", marginTop: "3rem" }}>Welcome Back!</h1>
+                        <p className="LoginDescription">Please login to continue to the dashboard.</p>              
+
                         <input
                             type="text"
                             placeholder="Username"
@@ -56,7 +60,7 @@ const LoginPage: React.FC = () => {
                             backgroundColor: "#191919",
                             paddingLeft: "0.8rem",
                             marginBottom: "1rem",
-                            marginTop: "3rem",
+                            marginTop: "1rem",
                             border: "none",
                             color: "#fff",
                             width: "80%",

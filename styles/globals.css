@@ -13,6 +13,27 @@ body {
     transform: scale(1.05);
 }
 
+.SocialsButton {
+    transition: transform 0.3s ease;
+}
+
+.SocialsButton:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.SearchPosts {
+    background-color: #202020;
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+    border: none;
+    color: #fff;
+    width: 60%;
+    height: 3rem;
+    border-radius: 0.2rem;
+    font-size: large;
+}
+
 .SearchPosts::placeholder {
     font-size: large;
 }
@@ -27,4 +48,266 @@ body {
 
 .PostsEditButton:hover {
     cursor: pointer;
+}
+
+.UpdateButton:hover {
+    cursor: pointer
+}
+
+.RefreshButton:hover {
+    cursor: pointer
+}
+
+.cm-editor {
+    background-color: #202020;
+    border-radius: 0.5rem;
+}
+
+.cm-editor .cm-content { font-family: "Roboto Mono" }
+
+::-webkit-scrollbar {
+    width: 10px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #202020; 
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #202020 transparent;
+}
+
+.ProfileWrapperDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.ProfileWrapper2Div {
+    width: 35%;
+    max-width: 100%;
+}
+
+.SocialsWrapperDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+.SocialsWrapper2Div {
+    width: 35%;
+}
+
+.PostsWrapperDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.PostsWrapper2Div {
+    width: 35%;
+}
+
+.PostsWrapperSearchDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.PostsWrapperSearch2Div {
+    width: 35%;
+}
+
+.LoginPageWrapperDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.LoginPageWrapper2Div {
+    width: 35%;
+}
+
+.LoginBackgroundWrapperDiv {
+    background-color: rgb(32, 32, 32);
+    width: 70%;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+}
+
+.DashboardLoggedInDivWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.DashboardLoggedIn2DivWrapper {
+    width: 35%;
+}
+
+.PostEditWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+    margin-bottom: 3rem;
+}
+
+.PostEditWrapper2Div {
+    width: 35%;
+}
+
+.UpdateAnnouncementInput {
+    background-color: #202020;
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+    border: none;
+    color: #fff;
+    width: 98%;
+    height: 3.5rem;
+    border-radius: 0.4rem;
+    font-size: large;
+}
+
+@media (max-width: 768px) {
+    .ProfileWrapperDiv {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 8%;
+        margin-left: 2%;
+    }
+
+    .ProfileWrapper2Div {
+        width: 93%;
+    }
+
+    .SocialsWrapperDiv {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .SocialsWrapper2Div {
+        width: 100%;
+    }
+
+    .PostsWrapperDiv {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .PostsWrapper2Div {
+        width: 100%;
+    }
+
+    .PostsWrapperSearchDiv {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 8%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .PostsWrapperSearch2Div {
+        width: 100%;
+    }
+
+    .SearchPosts {
+        background-color: #202020;
+        padding-left: 0.8rem;
+        margin-bottom: 1rem;
+        border: none;
+        color: #fff;
+        width: 95%;
+        height: 3rem;
+        border-radius: 0.2rem;
+        font-size: large;
+    }
+
+    .LoginPageWrapperDiv {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+    }
+
+    .LoginPageWrapper2Div {
+        width: 100%;
+    }
+
+    .LoginBackgroundWrapperDiv {
+        background-color: rgb(32, 32, 32);
+        width: 95%;
+        margin: auto;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .LoginDescription {
+        display: none;
+    }
+
+    .DashboardLoggedInDivWrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 8%;
+    }
+
+    .DashboardLoggedIn2DivWrapper {
+        width: 100%;
+    }
+
+    .PostEditWrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 8%;
+    }
+    
+    .PostEditWrapper2Div {
+        width: 100%;
+    }
+
+    .UpdateAnnouncementInput {
+        background-color: #202020;
+        padding-left: 0.8rem;
+        margin-bottom: 1rem;
+        border: none;
+        color: #fff;
+        width: 96%;
+        height: 3.5rem;
+        border-radius: 0.4rem;
+        font-size: large;
+    }    
 }

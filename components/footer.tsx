@@ -9,16 +9,14 @@ export const Footer = () => {
 
 	return (
         <div style={{
-            position: "fixed",
-            bottom: "2rem",
-            left: "0",
-            right: "0",
+            marginTop: "auto",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            padding: "none"
         }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.3rem" }}>
+        <div style={{ textAlign: "center", color: "#fff" }}>
 
             <a href="mailto:hello@katsu.bio" target="_blank" style={{ color: "#fff", marginLeft: "1rem", fontSize: "24px" }}>
             <MdEmail/>
@@ -39,11 +37,11 @@ export const Footer = () => {
             <a href="/dashboard/login" style={{ color: "#fff", marginLeft: "1rem", fontSize: "23px" }}>
             <IoMdSettings/>
             </a>
-        </div>
 
-        <p style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.6)", margin: "0" }}>
-            Copyright © {currentYear} - Made with ❤️ by Katsu
-        </p>
+            <p style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.6)", margin: "0", padding: "0", marginTop: "0.5rem", marginBottom: "1rem" }}>
+                Copyright © {currentYear} - Made with ❤️ by Katsu
+            </p>
+        </div>
         </div>
 	);
 };

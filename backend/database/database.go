@@ -91,7 +91,7 @@ func GetBlogs(query string) []structs.Blog {
 }
 
 func UpdateBlog(blogID string, title string, description string, tag string, html string) bool {
-	var returnStatement bool
+	var returnStatement = true
 	tx, _ := database_connection.Begin()
 
 	if title != "" {
@@ -99,7 +99,7 @@ func UpdateBlog(blogID string, title string, description string, tag string, htm
 
 		if databaseError != nil {
 			tx.Rollback()
-			returnStatement = true
+			returnStatement = false
 		}
 		defer tx.Commit()
 	}
@@ -108,16 +108,16 @@ func UpdateBlog(blogID string, title string, description string, tag string, htm
 
 		if databaseError != nil {
 			tx.Rollback()
-			returnStatement = true
+			returnStatement = false
 		}
 		defer tx.Commit()
 	}
 	if tag != "" {
-		_, databaseError := database_connection.Exec("UPDATE blogs SET blog_tag = ? WHERE blog_id = ?", tag, blogID)
+		_, databaseError := database_connection.Exec("UPDATE blogs SET blog_tag = ? WHERE blog_id = ?", strings.ToLower(tag), blogID)
 
 		if databaseError != nil {
 			tx.Rollback()
-			returnStatement = true
+			returnStatement = false
 		}
 		defer tx.Commit()
 	}
@@ -126,7 +126,7 @@ func UpdateBlog(blogID string, title string, description string, tag string, htm
 
 		if databaseError != nil {
 			tx.Rollback()
-			returnStatement = true
+			returnStatement = false
 		}
 		defer tx.Commit()
 	}

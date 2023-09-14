@@ -24,8 +24,8 @@ export const Posts = () => {
 	}, []);
 
 	return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "0.5rem" }}>
-        	<div style={{ width: "35%" }}>
+        <div className="PostsWrapperDiv">
+        	<div className="PostsWrapper2Div">
 				<h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginRight: "1rem" }}>Recent Posts</h1>
 				
 				{blogData.slice(0, 2).map((blog) => (

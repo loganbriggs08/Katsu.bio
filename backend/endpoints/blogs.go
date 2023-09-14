@@ -80,6 +80,23 @@ func UpdateBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		databaseUpdateBlogResult := database.UpdateBlog(r.Header.Get("blog_id"), r.Header.Get("blog_title"), r.Header.Get("blog_description"), r.Header.Get("blog_tag"), r.Header.Get("blog_html"))
 
+		BlogUpdateResult := structs.BlogUpdate{
+			Updated: databaseUpdateBlogResult,
+		}
+
+		BlogUpdateResultMarshal, BlogUpdateResultMarshalError := json.Marshal(BlogUpdateResult)
+
+		if BlogUpdateResultMarshalError != nil {
+			log.Fatal(BlogUpdateResultMarshalError)
+		}
+
+		w.WriteHeader(http.StatusOK)
+		_, returnResultError := w.Write(BlogUpdateResultMarshal)
+
+		if returnResultError != nil {
+			log.Fatal(returnResultError)
+		}
+
 	} else {
 		HandleBlogsUpdateCallbackError := structs.Error{
 			ErrorCode:    http.StatusMethodNotAllowed,

@@ -12,13 +12,13 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
-			<body className={clsx("min-h-screen bg-background font-sans antialiased", fontSans.variable)} style={{ fontFamily: "Roboto Mono" }}>
+			<body style={{ display: "flex", flexDirection: "column", minHeight: "98vh", fontFamily: "Roboto Mono" }}>
 				{/* <Banner /> */}
 
-				<main>
+				<main style={{ flex: "1" }}>
 					{children}
 				</main>
-
+				
 				<Footer />
 			</body>
 		</html>
