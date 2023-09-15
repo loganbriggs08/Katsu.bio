@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"katsu.bio/database"
 	"katsu.bio/endpoints"
 	"log"
@@ -25,10 +24,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 func main() {
 	if database.Initialize() == true {
-		fmt.Println("Database has been initialized successfully.")
 		if database.CreateTables() == true {
-			fmt.Println("Database tables have been created successfully.")
-
 			http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
 			http.HandleFunc("/api/blogs/html", endpoints.HandleBlogsHTML)
 			http.HandleFunc("/api/blogs/update", endpoints.UpdateBlogs)
