@@ -12,7 +12,6 @@ import (
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-
 		if err := godotenv.Load(); err != nil {
 			log.Fatal("Error loading .env file")
 		}
