@@ -42,7 +42,7 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
         const response = await fetch("https://katsu.bio/api/blogs/html", {
           method: "GET",
           headers: {
-            blog_id: blog.blog_id,
+            id: blog.blog_id,
           },
         });
 
@@ -68,8 +68,8 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          "blog_id": blog.blog_id,
-          "blog_html": htmlCode.replace(/[\r\n]+/g, ''),
+          "id": blog.blog_id,
+          "html": htmlCode.replace(/[\r\n]+/g, ''),
         }
       });
   
@@ -132,10 +132,10 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'blog_id': blog.blog_id,
-            'blog_title': title,
-            'blog_description': description,
-            'blog_tag': tag,
+            'id': blog.blog_id,
+            'title': title,
+            'description': description,
+            'tag': tag,
           }
         });
   

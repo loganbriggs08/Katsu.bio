@@ -2,7 +2,6 @@ package endpoints
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -16,18 +15,6 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		if err := godotenv.Load(); err != nil {
 			log.Fatal("Error loading .env file")
 		}
-
-		fmt.Println("Received Headers:")
-
-		for key, values := range r.Header {
-			for _, value := range values {
-				fmt.Printf("%s: %s\n", key, value)
-			}
-		}
-
-		fmt.Println(os.Getenv("DASHBOARD_USERNAME"), os.Getenv("DASHBOARD_PASSWORD"))
-		fmt.Println(r.Header.Get("username"), r.Header.Get("password"))
-		fmt.Println(r.Header.Get("abc"))
 
 		if r.Header.Get("username") == os.Getenv("DASHBOARD_USERNAME") && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
 			dashboardLoginStruct := structs.LoginResult{

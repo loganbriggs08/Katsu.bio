@@ -78,7 +78,7 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 
 func UpdateBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		databaseUpdateBlogResult := database.UpdateBlog(r.Header.Get("blog_id"), r.Header.Get("blog_title"), r.Header.Get("blog_description"), r.Header.Get("blog_tag"), r.Header.Get("blog_html"))
+		databaseUpdateBlogResult := database.UpdateBlog(r.Header.Get("id"), r.Header.Get("title"), r.Header.Get("description"), r.Header.Get("tag"), r.Header.Get("html"))
 
 		BlogUpdateResult := structs.BlogUpdate{
 			Updated: databaseUpdateBlogResult,
@@ -122,7 +122,7 @@ func UpdateBlogs(w http.ResponseWriter, r *http.Request) {
 func HandleBlogsHTML(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		blogHTMLStruct := structs.ReturnHTML{
-			BlogHTML: database.GetHTML(r.Header.Get("blog_id")),
+			BlogHTML: database.GetHTML(r.Header.Get("id")),
 		}
 
 		BlogHtmlMarshal, BlogHTMLMarshalError := json.Marshal(blogHTMLStruct)
