@@ -3,10 +3,11 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
-	"katsu.bio/structs"
 	"log"
 	"net/http"
 	"os"
+
+	"katsu.bio/structs"
 )
 
 var announcementMessage string
@@ -33,7 +34,7 @@ func HandleAnnouncement(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		} else {
-			if r.Header.Get("dashboard_password") == os.Getenv("DASHBOARD_PASSWORD") {
+			if r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
 				announcementMessage = r.Header.Get("announcement")
 				fmt.Println(announcementMessage)
 

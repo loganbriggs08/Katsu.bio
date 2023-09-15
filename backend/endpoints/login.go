@@ -3,11 +3,12 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/joho/godotenv"
-	"katsu.bio/structs"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
+	"katsu.bio/structs"
 )
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -16,10 +17,19 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 			log.Fatal("Error loading .env file")
 		}
 
-		fmt.Println(os.Getenv("DASHBOARD_USERNAME"), os.Getenv("DASHBOARD_PASSWORD"))
-		fmt.Println(r.Header.Get("dashboard_username"), r.Header.Get("dashboard_password"))
+		fmt.Println("Received Headers:")
 
-		if r.Header.Get("dashboard_username") == os.Getenv("DASHBOARD_USERNAME") && r.Header.Get("dashboard_password") == os.Getenv("DASHBOARD_PASSWORD") {
+		for key, values := range r.Header {
+			for _, value := range values {
+				fmt.Printf("%s: %s\n", key, value)
+			}
+		}
+
+		fmt.Println(os.Getenv("DASHBOARD_USERNAME"), os.Getenv("DASHBOARD_PASSWORD"))
+		fmt.Println(r.Header.Get("username"), r.Header.Get("password"))
+		fmt.Println(r.Header.Get("abc"))
+
+		if r.Header.Get("username") == os.Getenv("DASHBOARD_USERNAME") && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
 			dashboardLoginStruct := structs.LoginResult{
 				LoginSuccess: true,
 			}

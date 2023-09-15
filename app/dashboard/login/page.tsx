@@ -22,9 +22,8 @@ const LoginPage: React.FC = () => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'dashboard_password': password,
-              'dashboard_username': username,
-              'abc': "abc"
+              'password': password,
+              'username': username,
             }
           });
     

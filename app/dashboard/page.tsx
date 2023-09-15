@@ -22,8 +22,8 @@ const DashboardPage: React.FC = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "dashboard_username": usernameCookie.split("=")[1],
-          "dashboard_password": passwordCookie.split("=")[1],
+          "username": usernameCookie.split("=")[1],
+          "password": passwordCookie.split("=")[1],
         }
       })
         .then((response) => response.json())

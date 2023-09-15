@@ -61,7 +61,7 @@ export const Announcement = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'announcement': newAnnouncement?? '',
-                'dashboard_password': passwordCookie?.split("=")[1] ?? '',
+                'password': passwordCookie?.split("=")[1] ?? '',
             }
         });
     
