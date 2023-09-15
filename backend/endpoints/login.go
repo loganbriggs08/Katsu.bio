@@ -18,6 +18,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		}
 
 		fmt.Println(os.Getenv("DASHBOARD_USERNAME"), os.Getenv("DASHBOARD_PASSWORD"))
+		fmt.Println(r.Header.Get("dashboard_username"), r.Header.Get("dashboard_password"))
 
 		if r.Header.Get("dashboard_username") == os.Getenv("DASHBOARD_USERNAME") && r.Header.Get("dashboard_password") == os.Getenv("DASHBOARD_PASSWORD") {
 			dashboardLoginStruct := structs.LoginResult{
