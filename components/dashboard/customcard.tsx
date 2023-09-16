@@ -1,7 +1,8 @@
-import React from 'react';
-import { IoMdSettings } from 'react-icons/io'
-import { MdDelete } from 'react-icons/md'
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { IoMdSettings } from 'react-icons/io';
+import { MdDelete } from 'react-icons/md';
+import { useRouter } from "next/navigation";
 
 interface BlogData {
   blog_id: string;
@@ -16,7 +17,27 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
   const router = useRouter();
-  
+
+  const handleDelete = async () => {
+    try {
+      const password = document.cookie.replace(/(?:(?:^|.*;\s*)password\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      const blog_id = blog.blog_id;
+
+      const response = await axios.delete('https://katsu.bio/api/blogs/delete', {
+        headers: {
+          'password': password,
+          'id': blog_id,
+        },
+      });
+
+      if (response.data.deleted) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Error deleting blog:', error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -49,20 +70,20 @@ const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
             {blog.blog_tag.toUpperCase()}
           </div>
           <div style={{ marginLeft: "auto", display: "flex" }}>
-                <button
-                  className='PostsEditButton'
-                  onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}}
-                  style={{ background: "transparent", border: "none", color: "#fff", fontSize: "25px", marginLeft: "5px" }}
-                >
-                  <IoMdSettings/>
-                </button>
-                <button
-                  className='PostsEditButton'
-                  onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}}
-                  style={{ background: "transparent", border: "none", color: "#ED4245", fontSize: "25px", marginLeft: "5px" }}
-                >
-                  <MdDelete/>
-                </button>
+            <button
+              className='PostsEditButton'
+              onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}}
+              style={{ background: "transparent", border: "none", color: "#fff", fontSize: "25px", marginLeft: "5px" }}
+            >
+              <IoMdSettings/>
+            </button>
+            <button
+              className='PostsEditButton'
+              onClick={handleDelete}
+              style={{ background: "transparent", border: "none", color: "#ED4245", fontSize: "25px", marginLeft: "5px" }}
+            >
+              <MdDelete/>
+            </button>
           </div>
         </div>
       </div>
