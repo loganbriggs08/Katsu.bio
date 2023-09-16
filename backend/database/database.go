@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	modules "katsu.bio/modules/random"
 	"log"
 	"strings"
 
@@ -36,8 +37,17 @@ func CreateTables() bool {
 	}
 }
 
-func CreateBlog() {
+func CreateBlog() string {
+	var tableCreationError error
+	blogID := modules.RandomString(16)
 
+	_, tableCreationError = database_connection.Exec("INSERT INTO blogs(blog_id, blog_title, blog_description, blog_tag, blog_html) VALUES(?, ?, ?, ?, ?)", blogID, "Blog Title", "Blog Description", "Blog Tag", "<div></div>")
+
+	if tableCreationError != nil {
+		return ""
+	} else {
+		return blogID
+	}
 }
 
 func GetBlogs(query string) []structs.Blog {
