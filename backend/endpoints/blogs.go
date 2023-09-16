@@ -141,7 +141,7 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("Error loading .env file")
 	}
 
-	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") && r.Header.Get("id") != "" {
+	if r.Method == "DELETE" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") && r.Header.Get("id") != "" {
 		databaseDeleteResult := database.DeleteBlog(r.Header.Get("id"))
 
 		deleteResult := structs.BlogDeleted{
