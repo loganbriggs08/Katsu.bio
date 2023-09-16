@@ -22,7 +22,8 @@ type BlogUpdate struct {
 }
 
 type BlogCreated struct {
-	Created bool `json:"created"`
+	Created bool   `json:"created"`
+	BlogID  string `json:"blog_id"`
 }
 
 type Tags struct {
