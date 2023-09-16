@@ -7,6 +7,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
   const router = useRouter();
   const post_id = params.post_id;
   const [htmlContent, setHtmlContent] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchHtmlContent() {
@@ -21,13 +22,14 @@ export default function Page({ params }: { params: { post_id: string } }) {
         if (response.ok) {
           const data = await response.json();
           const blogHtml = data.blog_html;
-
           setHtmlContent(blogHtml);
         } else {
           setHtmlContent(null);
         }
       } catch (error) {
         console.error("Error fetching HTML content:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -36,13 +38,10 @@ export default function Page({ params }: { params: { post_id: string } }) {
 
   return (
     <div>
-      {htmlContent ? (
+      {isLoading ? null : htmlContent ? (
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
       ) : (
-        <div style={{ marginLeft: "1rem" }}>
-            <h1 style={{ fontSize: "1.5rem", fontWeight: "500"}}>We couldn't find that post 😔...</h1>
-            <p style={{ fontSize: "1rem" }}>We are preforming some magic to bring this post to you so please wait.</p>
-        </div>
+        <h1>Page/Post couldn't be found</h1>
       )}
     </div>
   );
