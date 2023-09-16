@@ -142,6 +142,24 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") && r.Header.Get("id") != "" {
+		databaseDeleteResult := database.DeleteBlog(r.Header.Get("id"))
+
+		deleteResult := structs.BlogDeleted{
+			Deleted: databaseDeleteResult,
+		}
+
+		deleteResultMarshal, deleteResultMarshalError := json.Marshal(deleteResult)
+
+		if deleteResultMarshalError != nil {
+			log.Fatal(deleteResultMarshalError)
+		}
+
+		w.WriteHeader(http.StatusOK)
+		_, writeError := w.Write(deleteResultMarshal)
+
+		if writeError != nil {
+			log.Fatal(writeError)
+		}
 
 	} else {
 		HandleBlogsUpdateCallbackError := structs.Error{
