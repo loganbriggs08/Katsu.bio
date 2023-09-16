@@ -28,7 +28,7 @@ export const Posts = () => {
   return (
     <div>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <p>Loading Posts.. 🙃</p>
       ) : (
         blogData.map((blog) => (
           <div key={blog.blog_id} style={{ marginBottom: "1rem" }}>
