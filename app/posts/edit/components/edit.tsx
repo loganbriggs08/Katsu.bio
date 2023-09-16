@@ -84,7 +84,6 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
   };
 
   const logValue = useCallback((value: any) => {
-    console.log('value:', value);
     setLastLoggedValue(value);
   }, []);
 

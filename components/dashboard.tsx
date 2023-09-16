@@ -5,10 +5,6 @@ import { Posts } from '../components/dashboard/posts'
 import { Announcement } from '../components/dashboard/announcement'
 
 export const Dashboard = () => {
-    const onChange = React.useCallback((value: any, viewUpdate: any) => {
-        console.log('value:', value);
-    }, []);
-
 	return (
         <div className='DashboardLoggedInDivWrapper'>
         	<div className='DashboardLoggedIn2DivWrapper'>

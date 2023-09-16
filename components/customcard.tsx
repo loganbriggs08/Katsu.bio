@@ -13,7 +13,6 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
   const blogLink = `/posts/${blog.blog_id}`;
-  console.log(blog.blog_id) 
   
   return (
     <a href={blogLink} style={{ textDecoration: 'none', color: 'inherit' }}>
