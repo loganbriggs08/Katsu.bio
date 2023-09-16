@@ -11,6 +11,11 @@ export const Dashboard = () => {
 				<h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginRight: "1rem" }}>Dashboard</h1>
 
                 <div style={{ marginLeft: "2rem" }}>
+                    <p style={{ fontSize: "20px" }}>Create Post:</p>
+                    
+                </div>
+
+                <div style={{ marginLeft: "2rem" }}>
                     <p style={{ fontSize: "20px" }}>Edit Posts:</p>
                     <Posts/>
                 </div>
