@@ -2,6 +2,8 @@ package endpoints
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
@@ -78,7 +80,12 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateBlog(w http.ResponseWriter, r *http.Request) {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
+		fmt.Println("hello")
 		newBlogID, _ := database.CreateBlog()
 		var created bool
 
