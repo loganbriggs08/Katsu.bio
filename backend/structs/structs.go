@@ -21,6 +21,10 @@ type BlogUpdate struct {
 	Updated bool `json:"updated"`
 }
 
+type BlogCreated struct {
+	Created bool `json:"created"`
+}
+
 type Tags struct {
 	Tags []string `json:"tags"`
 }
