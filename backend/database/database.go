@@ -36,6 +36,10 @@ func CreateTables() bool {
 	}
 }
 
+func CreateBlog() {
+
+}
+
 func GetBlogs(query string) []structs.Blog {
 	var ReturnBlogs []structs.Blog
 
