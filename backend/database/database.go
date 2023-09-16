@@ -37,17 +37,32 @@ func CreateTables() bool {
 	}
 }
 
-func CreateBlog() string {
+func CreateBlog() (string, error) {
 	var tableCreationError error
 	blogID := modules.RandomString(16)
 
-	_, tableCreationError = database_connection.Exec("INSERT INTO blogs(blog_id, blog_title, blog_description, blog_tag, blog_html) VALUES(?, ?, ?, ?, ?)", blogID, "Blog Title", "Blog Description", "Blog Tag", "<div></div>")
+	tx, err := database_connection.Begin()
+	if err != nil {
+		return "", err
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+
+	_, tableCreationError = tx.Exec("INSERT INTO blogs(blog_id, blog_title, blog_description, blog_tag, blog_html) VALUES(?, ?, ?, ?, ?)", blogID, "Blog Title", "Blog Description", "Blog Tag", "<div></div>")
 
 	if tableCreationError != nil {
-		return ""
-	} else {
-		return blogID
+		tx.Rollback()
+		return "", tableCreationError
 	}
+
+	if err := tx.Commit(); err != nil {
+		return "", err
+	}
+
+	return blogID, nil
 }
 
 func GetBlogs(query string) []structs.Blog {
