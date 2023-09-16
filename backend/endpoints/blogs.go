@@ -79,6 +79,33 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 
 func CreateBlog(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
+		newBlogID, _ := database.CreateBlog()
+		var created bool
+
+		if newBlogID != "" {
+			created = true
+		} else {
+			created = false
+		}
+
+		NewBlogReturnStruct := structs.BlogCreated{
+			Created: created,
+			BlogID:  newBlogID,
+		}
+
+		NewBlogReturnStructMarshal, NewBlogReturnStructMarshalError := json.Marshal(NewBlogReturnStruct)
+
+		if NewBlogReturnStructMarshalError != nil {
+			log.Fatal(NewBlogReturnStructMarshalError)
+		}
+
+		w.WriteHeader(http.StatusOK)
+
+		_, WriteError := w.Write(NewBlogReturnStructMarshal)
+
+		if WriteError != nil {
+			log.Fatal(WriteError)
+		}
 
 	} else {
 		HandleBlogsUpdateCallbackError := structs.Error{
@@ -96,7 +123,7 @@ func CreateBlog(w http.ResponseWriter, r *http.Request) {
 			_, WriteError := w.Write(HandleBlogsUpdateCallbackErrorMarshal)
 
 			if WriteError != nil {
-				log.Fatal(MarshalError)
+				log.Fatal(WriteError)
 			}
 		}
 	}
