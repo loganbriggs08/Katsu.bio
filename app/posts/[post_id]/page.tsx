@@ -9,6 +9,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     async function fetchHtmlContent() {
       try {
         const response = await fetch(`https://katsu.bio/api/blogs/html`, {
@@ -33,7 +34,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
     }
 
     fetchHtmlContent();
-  }, []);
+  }, [post_id]);
 
   return (
     <div>

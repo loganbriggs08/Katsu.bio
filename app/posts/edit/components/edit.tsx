@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from "next/navigation";
 import 'react-toastify/dist/ReactToastify.css';
 import { MdDelete } from 'react-icons/md';
@@ -24,17 +24,11 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
   const [lastLoggedValue, setLastLoggedValue] = useState(null);
   const [blogHtmlContent, setBlogHtmlContent] = useState<string>("<div></div>");
   const [isBrowser, setIsBrowser] = useState(false);
-  var timer: any;
+  const timerRef = useRef<any>(null);
 
   useEffect(() => {
     setIsBrowser(typeof window !== 'undefined');
   }, []);
-
-  const reloadPage = () => {
-    if (isBrowser) {
-      window.location.reload();
-    }
-  };
 
   useEffect(() => {
     const fetchBlogHtml = async () => {
@@ -88,10 +82,10 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
   }, []);
 
   const onChange = useCallback((value: any, viewUpdate: any) => {
-    clearTimeout(timer); 
+    clearTimeout(timerRef.current);
 
-    timer = setTimeout(() => {
-      updateHTML(value)
+    timerRef.current = setTimeout(() => {
+      updateHTML(value);
     }, 2000);
 
   }, [logValue]);

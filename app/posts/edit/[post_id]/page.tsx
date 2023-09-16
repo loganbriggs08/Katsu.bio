@@ -17,6 +17,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
   const [blogData, setBlogData] = useState<Blog[]>([]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const headers = new Headers();
     headers.append('query', params.post_id);
   
@@ -31,7 +32,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [params.post_id]);
 
   useEffect(() => {
     const cookies = document.cookie.split(";");
