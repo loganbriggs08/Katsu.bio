@@ -119,6 +119,21 @@ func GetBlogs(query string) []structs.Blog {
 	}
 }
 
+func DeleteBlog(blogID string) bool {
+	stmt, err := database_connection.Prepare("DELETE FROM blogs WHERE blog_id = ?")
+	if err != nil {
+		return false
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(blogID)
+	if err != nil {
+		return false
+	}
+
+	return true
+}
+
 func UpdateBlog(blogID string, title string, description string, tag string, html string) bool {
 	var returnStatement = true
 	tx, _ := database_connection.Begin()

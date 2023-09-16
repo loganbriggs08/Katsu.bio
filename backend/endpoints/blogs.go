@@ -136,6 +136,35 @@ func CreateBlog(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func DeleteBlog(w http.ResponseWriter, r *http.Request) {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") && r.Header.Get("id") != "" {
+
+	} else {
+		HandleBlogsUpdateCallbackError := structs.Error{
+			ErrorCode:    http.StatusMethodNotAllowed,
+			ErrorMessage: "Method used is not accepted at this Endpoint.",
+		}
+
+		HandleBlogsUpdateCallbackErrorMarshal, MarshalError := json.Marshal(HandleBlogsUpdateCallbackError)
+
+		if MarshalError != nil {
+			log.Fatal(MarshalError)
+		} else {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+
+			_, WriteError := w.Write(HandleBlogsUpdateCallbackErrorMarshal)
+
+			if WriteError != nil {
+				log.Fatal(WriteError)
+			}
+		}
+	}
+}
+
 func UpdateBlogs(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		databaseUpdateBlogResult := database.UpdateBlog(r.Header.Get("id"), r.Header.Get("title"), r.Header.Get("description"), r.Header.Get("tag"), r.Header.Get("html"))
