@@ -73,11 +73,11 @@ export default function Page({ params }: { params: { post_id: string } }) {
 
   return (
     <div>
-        {blogData.slice(0, 1).map((blog) => (
-			<div key={blog.blog_id} style={{ marginBottom: "1rem" }}>
-                {isLoggedIn === true ? <Edit blog={blog} /> : null}
-			</div>
-		))}
+      {blogData.slice(0, 1).map((blog) => (
+        <div key={blog.blog_id} style={{ marginBottom: "1rem" }}>
+          {isLoggedIn === true ? <Edit blog={blog} /> : null}
+        </div>
+      ))}
     </div>
   );
 };

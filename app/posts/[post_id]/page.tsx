@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { post_id: string } }) {
-  const router = useRouter();
   const post_id = params.post_id;
   const [htmlContent, setHtmlContent] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -34,7 +33,7 @@ export default function Page({ params }: { params: { post_id: string } }) {
     }
 
     fetchHtmlContent();
-  }, [post_id]);
+  }, []);
 
   return (
     <div>
