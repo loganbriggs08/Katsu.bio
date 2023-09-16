@@ -26,6 +26,10 @@ type BlogCreated struct {
 	BlogID  string `json:"blog_id"`
 }
 
+type BlogDeleted struct {
+	Deleted bool `json:"deleted"`
+}
+
 type Tags struct {
 	Tags []string `json:"tags"`
 }
