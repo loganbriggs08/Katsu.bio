@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	"katsu.bio/database"
 	"katsu.bio/structs"
@@ -68,6 +69,31 @@ func HandleBlogs(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
 			_, WriteError := w.Write(HandleBlogsCallBackErrorMarshal)
+
+			if WriteError != nil {
+				log.Fatal(MarshalError)
+			}
+		}
+	}
+}
+
+func CreateBlog(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" && r.Header.Get("password") == os.Getenv("DASHBOARD_PASSWORD") {
+
+	} else {
+		HandleBlogsUpdateCallbackError := structs.Error{
+			ErrorCode:    http.StatusMethodNotAllowed,
+			ErrorMessage: "Method used is not accepted at this Endpoint.",
+		}
+
+		HandleBlogsUpdateCallbackErrorMarshal, MarshalError := json.Marshal(HandleBlogsUpdateCallbackError)
+
+		if MarshalError != nil {
+			log.Fatal(MarshalError)
+		} else {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+
+			_, WriteError := w.Write(HandleBlogsUpdateCallbackErrorMarshal)
 
 			if WriteError != nil {
 				log.Fatal(MarshalError)

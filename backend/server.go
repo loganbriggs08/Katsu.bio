@@ -28,6 +28,7 @@ func main() {
 			http.HandleFunc("/api/blogs", endpoints.HandleBlogs)
 			http.HandleFunc("/api/blogs/html", endpoints.HandleBlogsHTML)
 			http.HandleFunc("/api/blogs/update", endpoints.UpdateBlogs)
+			http.HandleFunc("/api/blogs/create", endpoints.CreateBlog)
 
 			http.HandleFunc("/api/announcement", endpoints.HandleAnnouncement)
 
