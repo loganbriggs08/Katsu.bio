@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import 'react-toastify/dist/ReactToastify.css';
-import { FiRefreshCcw } from 'react-icons/fi';
+import { MdDelete } from 'react-icons/md';
 import { ToastContainer, toast } from 'react-toastify';
 import CodeMirror from '@uiw/react-codemirror';
 import { html } from '@codemirror/lang-html';
@@ -162,7 +162,6 @@ const Edit: React.FC<CustomCardProps> = ({ blog }) => {
         <div className="PostEditWrapper2Div">
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginRight: "0.5rem", verticalAlign: "bottom" }}>{blog.blog_title}</h1>
-            <button className="RefreshButton" onClick={() => {reloadPage}} style={{ backgroundColor: "transparent", color: "white", border: "none", fontSize: "1.4rem", verticalAlign: "bottom" }}><FiRefreshCcw/></button>
           </div>
 
           <div style={{ marginLeft: "2rem" }}>

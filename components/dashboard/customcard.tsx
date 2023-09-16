@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoMdSettings } from 'react-icons/io'
+import { MdDelete } from 'react-icons/md'
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface BlogData {
@@ -47,7 +48,22 @@ const CustomCard: React.FC<CustomCardProps> = ({ blog }) => {
           >
             {blog.blog_tag.toUpperCase()}
           </div>
-          <button className='PostsEditButton' onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}} style={{ marginLeft: "auto", background: "transparent", border: "none", color: "#fff", fontSize: "25px" }}><IoMdSettings/></button>
+          <div style={{ marginLeft: "auto", display: "flex" }}>
+                <button
+                  className='PostsEditButton'
+                  onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}}
+                  style={{ background: "transparent", border: "none", color: "#fff", fontSize: "25px", marginLeft: "5px" }}
+                >
+                  <IoMdSettings/>
+                </button>
+                <button
+                  className='PostsEditButton'
+                  onClick={() => { router.push(`/posts/edit/${blog.blog_id}`);}}
+                  style={{ background: "transparent", border: "none", color: "#ED4245", fontSize: "25px", marginLeft: "5px" }}
+                >
+                  <MdDelete/>
+                </button>
+          </div>
         </div>
       </div>
     </div>
