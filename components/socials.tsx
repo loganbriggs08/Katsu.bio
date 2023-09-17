@@ -5,7 +5,7 @@ import { FaArrowRightLong } from 'react-icons/fa6'
 export const Socials = () => {
 	return (
         <div className="SocialsWrapperDiv">
-        	<div  className="SocialsWrapper2Div">
+        	<div className="SocialsWrapper2Div">
 				<h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginRight: "1rem" }}>Socials</h1>
                 <a href="https://discord.com/channels/@me/1052982721598738522" target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div className='PostCard'
