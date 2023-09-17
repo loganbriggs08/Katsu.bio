@@ -50,8 +50,7 @@ const LoginPage: React.FC = () => {
             <div className='LoginPageWrapperDiv'>
                 <div className='LoginPageWrapper2Div'>
                     <div className='LoginBackgroundWrapperDiv'>
-                        <h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginBottom: "0px", marginTop: "3rem" }}>Welcome Back!</h1>
-                        <p className="LoginDescription">Please login to continue to the dashboard.</p>              
+                        <h1 style={{ fontSize: "1.8rem", fontWeight: "500", marginBottom: "1rem", marginTop: "3rem" }}>Dashboard Login</h1>
 
                         <input
                             type="text"
